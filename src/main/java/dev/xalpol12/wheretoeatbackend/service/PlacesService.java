@@ -23,15 +23,17 @@ public class PlacesService {
     }
 
     public PlacesSearchResponse findPlaceByLocation(LocationRequestDTO request) throws IOException, InterruptedException, ApiException {
-        PlacesSearchResponse results = PlacesApi.nearbySearchQuery(geoApiContext, request.getLocation())
-                .radius(request.getDistance())
+        PlacesSearchResponse results = PlacesApi.nearbySearchQuery(geoApiContext, request.location())
+                .radius(request.distance())
                 .rankby(RankBy.PROMINENCE)
                 .language("pl")
-                .minPrice(request.getMinPrice())
-                .maxPrice(request.getMaxPrice())
-                .type(request.getType())
+                .minPrice(request.minPrice())
+                .maxPrice(request.maxPrice())
+                .type(request.type())
                 .await();
         System.out.println(results.toString());
         return results;
     }
+
+//    public getPhoto()
 }

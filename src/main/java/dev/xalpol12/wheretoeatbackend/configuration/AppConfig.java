@@ -1,6 +1,8 @@
 package dev.xalpol12.wheretoeatbackend.configuration;
 
 import com.google.maps.GeoApiContext;
+import com.google.maps.PhotoRequest;
+import com.google.maps.model.Photo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +18,6 @@ public class AppConfig {
     public AppConfig(GoogleApiConfig googleConfig) {
         this.googleConfig = googleConfig;
     }
-
     @Bean(destroyMethod = "shutdown")
     @Scope(value = "singleton")
     public GeoApiContext geoApiContext() {

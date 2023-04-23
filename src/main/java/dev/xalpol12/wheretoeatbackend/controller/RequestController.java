@@ -1,5 +1,6 @@
 package dev.xalpol12.wheretoeatbackend.controller;
 
+import com.google.maps.ImageResult;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.PlacesSearchResult;
 import dev.xalpol12.wheretoeatbackend.service.PlacesService;
@@ -28,4 +29,9 @@ public class RequestController {
             throws IOException, InterruptedException, ApiException {
         return List.of((placesService.findPlaceByLocation(request).results));
     }
+
+//    @PostMapping("/image")
+//    public ImageResult getImage(@RequestBody ) {
+//        return placesService.photo()
+//    }
 }
