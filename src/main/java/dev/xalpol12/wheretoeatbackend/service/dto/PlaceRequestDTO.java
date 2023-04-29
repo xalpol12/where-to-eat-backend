@@ -4,7 +4,7 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PriceLevel;
 
-public record LocationRequestDTO (
+public record PlaceRequestDTO(
     LatLng location,
     int distance,
     PriceLevel minPrice,

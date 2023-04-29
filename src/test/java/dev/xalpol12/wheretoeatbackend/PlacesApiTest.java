@@ -14,7 +14,6 @@ public class PlacesApiTest {
     @Test
     public void testPlaceDetailsRequest() throws Exception {
         LatLng location = new LatLng(54.189968855417014, 16.182448076516245);
-//        PlacesSearchResponse results = PlacesApi.textSearchQuery(context, "Pizza in new york").await();
         PlacesSearchResponse results = PlacesApi.nearbySearchQuery(context, location)
                 .radius(2000)
                 .rankby(RankBy.PROMINENCE)

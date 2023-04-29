@@ -4,7 +4,7 @@ import com.google.maps.ImageResult;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.PlacesSearchResult;
 import dev.xalpol12.wheretoeatbackend.service.PlacesService;
-import dev.xalpol12.wheretoeatbackend.service.dto.LocationRequestDTO;
+import dev.xalpol12.wheretoeatbackend.service.dto.PlaceRequestDTO;
 import dev.xalpol12.wheretoeatbackend.service.dto.PhotoRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +26,7 @@ public class PlacesController {
     }
 
     @PostMapping("/find")
-    public List<PlacesSearchResult> getByLocation(@RequestBody LocationRequestDTO request)
+    public List<PlacesSearchResult> getByLocation(@RequestBody PlaceRequestDTO request)
             throws IOException, InterruptedException, ApiException {
         return List.of((placesService.findPlaceByLocation(request).results));
     }

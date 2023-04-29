@@ -5,7 +5,7 @@ import com.google.maps.ImageResult;
 import com.google.maps.PlacesApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.*;
-import dev.xalpol12.wheretoeatbackend.service.dto.LocationRequestDTO;
+import dev.xalpol12.wheretoeatbackend.service.dto.PlaceRequestDTO;
 import dev.xalpol12.wheretoeatbackend.service.dto.PhotoRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class PlacesService {
         this.geoApiContext = geoApiContext;
     }
 
-    public PlacesSearchResponse findPlaceByLocation(LocationRequestDTO request) throws IOException, InterruptedException, ApiException {
+    public PlacesSearchResponse findPlaceByLocation(PlaceRequestDTO request) throws IOException, InterruptedException, ApiException {
         return PlacesApi.nearbySearchQuery(geoApiContext, request.location())
                 .radius(request.distance())
                 .rankby(RankBy.PROMINENCE)
