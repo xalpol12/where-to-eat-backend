@@ -2,28 +2,23 @@ package dev.xalpol12.wheretoeatbackend.service;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.ImageResult;
-import com.google.maps.PhotoRequest;
 import com.google.maps.PlacesApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.*;
-import dev.xalpol12.wheretoeatbackend.configuration.GoogleApiConfig;
 import dev.xalpol12.wheretoeatbackend.service.dto.LocationRequestDTO;
 import dev.xalpol12.wheretoeatbackend.service.dto.PhotoRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.io.IOException;
 
 @Service
 public class PlacesService {
     private final GeoApiContext geoApiContext;
-    private final GoogleApiConfig googleConfig;
 
     @Autowired
-    public PlacesService(GeoApiContext geoApiContext, GoogleApiConfig googleConfig) {
+    public PlacesService(GeoApiContext geoApiContext) {
         this.geoApiContext = geoApiContext;
-        this.googleConfig = googleConfig;
     }
 
     public PlacesSearchResponse findPlaceByLocation(LocationRequestDTO request) throws IOException, InterruptedException, ApiException {
