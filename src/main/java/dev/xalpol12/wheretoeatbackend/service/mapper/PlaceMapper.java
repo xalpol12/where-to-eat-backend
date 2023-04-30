@@ -1,7 +1,6 @@
 package dev.xalpol12.wheretoeatbackend.service.mapper;
 
 import com.google.maps.model.Photo;
-import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import dev.xalpol12.wheretoeatbackend.service.dto.PlaceResponseDTO;
 import org.modelmapper.Converter;
@@ -23,8 +22,8 @@ public class PlaceMapper {
         mapper.addMappings(getPlaceMap());
     }
 
-    public List<PlaceResponseDTO> PlacesSearchResponseToPlaceResponseDTOList(PlacesSearchResponse places) {
-        return Arrays.stream(places.results)
+    public List<PlaceResponseDTO> PlacesSearchResultArrayToPlaceResponseDTOList(PlacesSearchResult[] places) {
+        return Arrays.stream(places)
                 .map(this::PlacesSearchResultToPlaceResponseDTO)
                 .collect(Collectors.toList());
     }
