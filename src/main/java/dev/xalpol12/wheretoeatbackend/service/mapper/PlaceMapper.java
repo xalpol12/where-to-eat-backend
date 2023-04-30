@@ -22,14 +22,14 @@ public class PlaceMapper {
         mapper.addMappings(getPlaceMap());
     }
 
-    public List<PlaceResponseDTO> PlacesSearchResultArrayToPlaceResponseDTOList(PlacesSearchResult[] places) {
-        return Arrays.stream(places)
-                .map(this::PlacesSearchResultToPlaceResponseDTO)
-                .collect(Collectors.toList());
+    public PlaceResponseDTO placesSearchResultToPlaceResponseDTO(PlacesSearchResult place) {
+        return mapper.map(place, PlaceResponseDTO.class);
     }
 
-    PlaceResponseDTO PlacesSearchResultToPlaceResponseDTO(PlacesSearchResult place) {
-        return mapper.map(place, PlaceResponseDTO.class);
+    public List<PlaceResponseDTO> placesSearchResultArrayToPlaceResponseDTOList(PlacesSearchResult[] places) {
+        return Arrays.stream(places)
+                .map(this::placesSearchResultToPlaceResponseDTO)
+                .collect(Collectors.toList());
     }
 
     private PropertyMap<PlacesSearchResult, PlaceResponseDTO> getPlaceMap() {

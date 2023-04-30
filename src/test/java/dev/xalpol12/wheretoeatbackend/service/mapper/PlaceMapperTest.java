@@ -46,7 +46,7 @@ class PlaceMapperTest {
         PlaceResponseDTO expected = createPlaceResponseDTO();
 
         //when
-        PlaceResponseDTO received = mapper.PlacesSearchResultToPlaceResponseDTO(toMap);
+        PlaceResponseDTO received = mapper.placesSearchResultToPlaceResponseDTO(toMap);
 
         //then
         assertEquals(expected, received);
@@ -60,7 +60,7 @@ class PlaceMapperTest {
         List<PlaceResponseDTO> expected = List.of(createPlaceResponseDTO(), createPlaceResponseDTO());
 
         //when
-        List<PlaceResponseDTO> received = mapper.PlacesSearchResultArrayToPlaceResponseDTOList(toMap);
+        List<PlaceResponseDTO> received = mapper.placesSearchResultArrayToPlaceResponseDTOList(toMap);
 
         //then
         assertEquals(expected, received);
