@@ -1,24 +1,48 @@
 package dev.xalpol12.wheretoeatbackend.service.mapper;
 
+import com.google.maps.model.Photo;
+import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
 import dev.xalpol12.wheretoeatbackend.service.dto.PlaceResponseDTO;
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
+import org.modelmapper.PropertyMap;
+import org.modelmapper.config.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PlaceMapper {
-    private final ModelMapper mapper = new ModelMapper();  //TODO: dependency injection
+    private final ModelMapper mapper = new ModelMapper();
 
     PlaceMapper() {
-        TypeMap<PlacesSearchResult, PlaceResponseDTO> typeMapToDTO = this.mapper.createTypeMap(PlacesSearchResult.class, PlaceResponseDTO.class);
-        typeMapToDTO.addMapping(src -> src.openingHours.openNow, PlaceResponseDTO::setOpenNow);
-        typeMapToDTO.addMapping(src -> Arrays.stream(src.photos).findAny().get().photoReference, PlaceResponseDTO::setPhotoReference);
+        mapper.getConfiguration().setFieldMatchingEnabled(true).setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
+        mapper.addMappings(getPlaceMap());
     }
 
-    public PlaceResponseDTO PlacesSearchResultToPlaceResponseDTO(PlacesSearchResult place) {
+    public List<PlaceResponseDTO> PlacesSearchResponseToPlaceResponseDTOList(PlacesSearchResponse places) {
+        return Arrays.stream(places.results)
+                .map(this::PlacesSearchResultToPlaceResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    PlaceResponseDTO PlacesSearchResultToPlaceResponseDTO(PlacesSearchResult place) {
         return mapper.map(place, PlaceResponseDTO.class);
+    }
+
+    private PropertyMap<PlacesSearchResult, PlaceResponseDTO> getPlaceMap() {
+        return new PropertyMap<>() {
+            final Converter<Photo[], String> photosToPhotoRef = ctx ->
+                    ctx.getSource() == null ? null : ctx.getSource()[0].photoReference;
+
+            @Override
+            protected void configure() {
+                map().setOpenNow(source.openingHours.openNow);
+                using(photosToPhotoRef).map(source.photos).setPhotoReference(null);
+            }
+        };
     }
 }
