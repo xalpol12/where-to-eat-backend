@@ -27,7 +27,7 @@ public class PlacesController {
 
     @PostMapping("/find")
     public List<PlaceResponseDTO> getByLocation(@RequestBody PlaceRequestDTO request)
-            throws IOException, InterruptedException, ApiException {
+            throws InterruptedException, ApiException, IOException {
         return placesService.findPlaceByLocation(request);
     }
 
