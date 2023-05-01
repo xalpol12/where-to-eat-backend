@@ -18,14 +18,15 @@ class PlaceMapperTest {
             .get("src/test/resources/json/places/places_search_single_result.json").toAbsolutePath().toString();
 
     private static PlaceMapper mapper;
+    private static ObjectMapper objectMapper;
 
     @BeforeAll
     static void setup() {
         mapper = new PlaceMapper();
+        objectMapper = new ObjectMapper();
     }
 
     private PlacesSearchResult createPlaceSearchResult() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(new FileReader(JSON_PLACE_RESULT_PATH), PlacesSearchResult.class);
     }
 
