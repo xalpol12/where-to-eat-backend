@@ -3,6 +3,7 @@ package dev.xalpol12.wheretoeatbackend.service.mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.maps.model.PlacesSearchResult;
 import dev.xalpol12.wheretoeatbackend.service.dto.PlaceResponseDTO;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileReader;
@@ -15,6 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlaceMapperTest {
     private final String JSON_PLACE_RESULT_PATH = Paths
             .get("src/test/resources/json/places_search_single_result.json").toAbsolutePath().toString();
+
+    private static PlaceMapper mapper;
+
+    @BeforeAll
+    static void setUp() {
+        mapper = new PlaceMapper();
+    }
 
     private PlacesSearchResult createPlaceSearchResult() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -41,7 +49,6 @@ class PlaceMapperTest {
     @Test
     void givenPlacesSearchResult_mapsCorrectlyToPlaceResponseDTO() throws IOException {
         //given
-        PlaceMapper mapper = new PlaceMapper();
         PlacesSearchResult toMap = createPlaceSearchResult();
         PlaceResponseDTO expected = createPlaceResponseDTO();
 
@@ -53,9 +60,8 @@ class PlaceMapperTest {
     }
 
     @Test
-    void givenPlacesSearchResponse_mapsCorrectlyToPlaceResponseDTOList() throws IOException {
+    void givenPlacesSearchResultArray_mapsCorrectlyToPlaceResponseDTOList() throws IOException {
         //given
-        PlaceMapper mapper = new PlaceMapper();
         PlacesSearchResult[] toMap = createPlaceSearchResultArray();
         List<PlaceResponseDTO> expected = List.of(createPlaceResponseDTO(), createPlaceResponseDTO());
 
