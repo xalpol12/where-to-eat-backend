@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlaceMapperTest {
     private final String JSON_PLACE_RESULT_PATH = Paths
-            .get("src/test/resources/json/places_search_single_result.json").toAbsolutePath().toString();
+            .get("src/test/resources/json/places/places_search_single_result.json").toAbsolutePath().toString();
 
     private static PlaceMapper mapper;
 
     @BeforeAll
-    static void setUp() {
+    static void setup() {
         mapper = new PlaceMapper();
     }
 
