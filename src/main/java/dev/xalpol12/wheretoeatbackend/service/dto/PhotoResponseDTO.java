@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+@AllArgsConstructor         //AllArgs and NoArgs added for testing purposes
 @NoArgsConstructor
 public class PhotoResponseDTO {
     byte[] imageData;
