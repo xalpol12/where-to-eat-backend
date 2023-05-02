@@ -1,8 +1,11 @@
 package dev.xalpol12.wheretoeatbackend.service.dto;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PlaceResponseDTO {
     private String name;
     private String placeId;
