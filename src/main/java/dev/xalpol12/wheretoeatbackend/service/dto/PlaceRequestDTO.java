@@ -9,5 +9,5 @@ public record PlaceRequestDTO(
     int distance,
     PriceLevel minPrice,
     PriceLevel maxPrice,
-    PlaceType type
+    PlaceType placeType
 ) {}
