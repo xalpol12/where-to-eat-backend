@@ -38,7 +38,7 @@ public class PlacesService {
                 .language("pl")
                 .minPrice(request.minPrice())
                 .maxPrice(request.maxPrice())
-                .type(request.type())
+                .type(request.placeType())
                 .await().results;
         return placeMapper.placesSearchResultArrayToPlaceResponseDTOList(response);
     }
