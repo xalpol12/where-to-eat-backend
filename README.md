@@ -112,14 +112,16 @@ Keep-Alive: timeout=60
 Connection: keep-alive
 
 {
-    "imageData" : {{imageData}}
+    "imageData" : {{imageData}},
+    "photoReference" : {{photoReference}}
 }
 ```
 With parameters:
 
-| Parameter   | Type       | Description             |
-|-------------|------------|-------------------------|
-| `imageData` | byte array | base64 coded byte array |
+| Parameter        | Type       | Description             |
+|------------------|------------|-------------------------|
+| `imageData`      | byte array | base64 coded byte array |
+| `photoReference` | string     | photo identifier passed in the request |
 
 ## Possible errors:
 
