@@ -22,12 +22,14 @@ class PhotoMapperTest {
     private static PhotoMapper mapper;
     private static String contentType;
     private static byte[] imageData;
+    private static String photoReference;
 
     @BeforeAll
     static void setup() throws IOException {
         mapper = new PhotoMapper();
         contentType = Files.readString(Path.of(JSON_CONTENT_TYPE_PATH));
         imageData = Files.readAllBytes(Path.of(JSON_IMAGE_DATA_PATH));
+        photoReference = "sample_reference_id";
     }
 
     private ImageResult createImageResult() throws IOException {
@@ -35,7 +37,7 @@ class PhotoMapperTest {
     }
 
     private PhotoResponseDTO createPhotoResponseDTO() throws IOException {
-        return new PhotoResponseDTO(imageData);
+        return new PhotoResponseDTO(imageData, photoReference);
     }
 
     @Test
@@ -46,13 +48,14 @@ class PhotoMapperTest {
 
         //when
         PhotoResponseDTO received = mapper.imageResultToPhotoResponseDTO(toMap);
+        received.setPhotoReference(photoReference);
 
         //then
         assertEquals(expected, received);
     }
 
     @Test
-    void imageResultListToPhotoResponseDTOList() throws IOException {
+    void givenImageResultList_mapsCorrectlyToPhotoResponseDTOList() throws IOException {
         //given
         ImageResult imgResult = createImageResult();
         List<ImageResult> toMap = List.of(imgResult, imgResult);
@@ -61,6 +64,7 @@ class PhotoMapperTest {
 
         //when
         List<PhotoResponseDTO> received = mapper.imageResultListToPhotoResponseDTOList(toMap);
+        received.forEach(dto -> {dto.setPhotoReference(photoReference);});
 
         //then
         assertEquals(expected, received);

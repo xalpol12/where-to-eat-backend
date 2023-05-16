@@ -30,7 +30,7 @@ public class PlacesService {
         this.photoMapper = photoMapper;
     }
 
-    public List<PlaceResponseDTO> findPlaceByLocation(PlaceRequestDTO request) throws IOException, InterruptedException, ApiException {
+    public List<PlaceResponseDTO> findPlaceByLocation(PlaceRequestDTO request) throws InterruptedException, ApiException, IOException {
         PlacesSearchResult[] response =  PlacesApi
                 .nearbySearchQuery(geoApiContext, request.location())
                 .radius(request.distance())
@@ -49,6 +49,8 @@ public class PlacesService {
                 .maxHeight(request.height())
                 .maxWidth(request.width())
                 .await();
-        return  photoMapper.imageResultToPhotoResponseDTO(imageResult);
+        PhotoResponseDTO response = photoMapper.imageResultToPhotoResponseDTO(imageResult);
+        response.setPhotoReference(request.photoReference());
+        return response;
     }
 }

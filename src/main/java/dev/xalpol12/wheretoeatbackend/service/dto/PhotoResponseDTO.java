@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor         //AllArgs and NoArgs added for testing purposes
 @NoArgsConstructor
 public class PhotoResponseDTO {
-    byte[] imageData;
+    private byte[] imageData;
+    private String photoReference;
 }
