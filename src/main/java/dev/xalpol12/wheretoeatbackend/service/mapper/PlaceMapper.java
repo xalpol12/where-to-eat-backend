@@ -40,6 +40,7 @@ public class PlaceMapper {
             @Override
             protected void configure() {
                 map().setOpenNow(source.openingHours.openNow);
+                map().setLocation(source.geometry.location);
                 using(photosToPhotoRef).map(source.photos).setPhotoReference(null);
             }
         };

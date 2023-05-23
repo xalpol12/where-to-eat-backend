@@ -1,6 +1,7 @@
 package dev.xalpol12.wheretoeatbackend.service.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResult;
 import dev.xalpol12.wheretoeatbackend.service.dto.PlaceResponseDTO;
 import org.junit.jupiter.api.BeforeAll;
@@ -39,6 +40,7 @@ class PlaceMapperTest {
                 .builder()
                 .name("Brovaria")
                 .placeId("ChIJ1ZUWpDhbBEcR--j66OkzlXw")
+                .location(new LatLng(52f, 16f))
                 .vicinity("Stary Rynek 73-74, Poznań")
                 .rating(4.4f)
                 .userRatingsTotal(2227)
